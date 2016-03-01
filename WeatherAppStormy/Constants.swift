@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 //MARK: API Keys
 
@@ -19,6 +19,11 @@ let KEY_WEATHER_API = "150eddf4806ebd2cb122eca6bff9cffd"
 let URL_WEATHER_BASE = "https://api.forecast.io/"
 
 let URL_WEATHER_API_REQUEST = "\(URL_WEATHER_BASE)forecast/\(KEY_WEATHER_API)"
+
+
+//Mark: Colors
+
+let COLOR_SHADOW_MEDIUM: CGFloat = 150 / 255.0
 
 
 

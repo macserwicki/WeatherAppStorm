@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Foundation
 import Alamofire
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
 
     let coordinates = "37.8267,-122.423"
     
@@ -21,12 +23,20 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var descLbl: UILabel!
     
+    var locationManager: CLLocationManager!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        requestWeatherData(coordinates, time: "")
+        // Init Location Manager
+            locationManager = CLLocationManager()
+            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.startUpdatingLocation()
         
     }
 
@@ -35,9 +45,11 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func requestWeatherData (location: String!, time: NSString!) {
+    func updateUserLocationWeather (longitude: String!, latitude: String!, time: NSString!) {
     
-    print("\(URL_WEATHER_API_REQUEST)/\(location)\(time))")
+    let location = "\(latitude),\(longitude)/"
+        
+    print("\(URL_WEATHER_API_REQUEST)/\(location)\(time)")
         
     Alamofire.request(.GET, "\(URL_WEATHER_API_REQUEST)/\(location)\(time)").responseData { response in
     
@@ -59,10 +71,10 @@ class ViewController: UIViewController {
     
     let weather = CurrentWeather.init(dict: jsonDict)
     
-        //Add error handling
+    //Add error handling
         
     self.tempLbl.text = "\(weather.temperature!.description)°"
-    
+    // Unicode for degree ° - U+00B0
         
     let precip = (weather.precipitationProbability! * Double(100.00)).description
         
@@ -80,6 +92,47 @@ class ViewController: UIViewController {
         
                 }
             }
+    }
+    
+    
+    func makeStringLength (stringLength: Int, var stringName: String) -> String {
+        //Index may be out of range if Long or Lat is less than 8 Characters.
+        stringName+="000000000"
+       return stringName.substringWithRange(Range<String.Index>(start: stringName.startIndex.advancedBy(0), end: stringName.endIndex.advancedBy(-stringName.characters.count + stringLength )))
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let userLocation: CLLocation = locations[0]
+        
+        var latValue: String = userLocation.coordinate.latitude.description
+        var longValue: String = userLocation.coordinate.longitude.description
+        
+        print("Current User Location")
+        print(latValue)
+        print(longValue)
+        
+        var newLatValue: String {
+            if latValue.containsString("-") {
+              return makeStringLength(8, stringName: latValue)
+            } else {
+              return makeStringLength(7, stringName: latValue)
+            }
+        }
+        
+        var newLongValue: String {
+            if longValue.containsString("-") {
+                return makeStringLength(8, stringName: longValue)
+            } else {
+                return makeStringLength(7, stringName: longValue)
+            }
+        }
+      
+        print(newLatValue)
+        print(newLongValue)
+        //updateUserLocatioWeather
+        updateUserLocationWeather(newLongValue, latitude: newLatValue, time: "")
+        
     }
     
     
