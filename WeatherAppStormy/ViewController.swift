@@ -13,6 +13,15 @@ class ViewController: UIViewController {
 
     let coordinates = "37.8267,-122.423"
     
+    @IBOutlet weak var tempLbl: UILabel!
+    
+    @IBOutlet weak var precipLbl: UILabel!
+    
+    @IBOutlet weak var humidLbl: UILabel!
+    
+    @IBOutlet weak var descLbl: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -50,12 +59,20 @@ class ViewController: UIViewController {
     
     let weather = CurrentWeather.init(dict: jsonDict)
     
-    print(weather.temperature)
-    print(weather.windSpeed)
-    print(weather.precipitationProbability)
-    print(weather.icon)
-    print(weather.humidityLevel)
-    print(weather.summaryOfWeather)
+        //Add error handling
+        
+    self.tempLbl.text = "\(weather.temperature!.description)°"
+    
+        
+    let precip = (weather.precipitationProbability! * Double(100.00)).description
+        
+    self.precipLbl.text = "\(precip)%"
+        
+    let humid = (weather.humidityLevel! * Double(100.00)).description
+        
+    self.humidLbl.text = "\(humid)%"
+        
+    self.descLbl.text = weather.summaryOfWeather
     
             } catch {
             print("Json Data Request Didn't Work")

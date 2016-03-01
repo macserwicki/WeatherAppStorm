@@ -12,7 +12,7 @@ class CurrentWeather {
     
     private var _temperature: Double?
     private var _humidityLevel: Double?
-    private var _precipitationProbability: Int?
+    private var _precipitationProbability: Double?
     private var _summaryOfWeather: String?
     private var _icon: String?
     private var _windSpeed: Double?
@@ -25,7 +25,7 @@ class CurrentWeather {
         return _humidityLevel
     }
     
-    var precipitationProbability: Int? {
+    var precipitationProbability: Double? {
         return _precipitationProbability
     }
     
@@ -54,7 +54,7 @@ class CurrentWeather {
                 _humidityLevel = humidity
             }
             
-            if let precipProbability = currentWeatherData["precipProbability"] as? Int {
+            if let precipProbability = currentWeatherData["precipProbability"] as? Double {
                 _precipitationProbability = precipProbability
             }
             
