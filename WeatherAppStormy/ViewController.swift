@@ -14,6 +14,8 @@ import CoreLocation
 class ViewController: UIViewController, CLLocationManagerDelegate {
 
     let coordinates = "37.8267,-122.423"
+    var _latValue = "37.8267"
+    var _longValue = "122.423"
     
     @IBOutlet weak var tempLbl: UILabel!
     
@@ -103,14 +105,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
+        print("Location Updated")
+        
         let userLocation: CLLocation = locations[0]
         
         var latValue: String = userLocation.coordinate.latitude.description
         var longValue: String = userLocation.coordinate.longitude.description
-        
-        print("Current User Location")
-        print(latValue)
-        print(longValue)
         
         var newLatValue: String {
             if latValue.containsString("-") {
@@ -128,15 +128,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
       
-        print(newLatValue)
-        print(newLongValue)
-        //updateUserLocatioWeather
-        updateUserLocationWeather(newLongValue, latitude: newLatValue, time: "")
+        _latValue = newLatValue
+        _longValue = newLongValue
+
         
     }
     
     
-    
+    override func viewDidAppear(animated: Bool) {
+        print(_latValue)
+        print(_longValue)
+        updateUserLocationWeather(_longValue, latitude: _latValue, time: "")
+        locationManager.stopUpdatingLocation()
+    }
     
 }
 
