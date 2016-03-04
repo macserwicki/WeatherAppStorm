@@ -27,6 +27,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager!
     
+    var weatherData = [CurrentWeather]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,11 +56,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
     Alamofire.request(.GET, "\(URL_WEATHER_API_REQUEST)/\(location)\(time)").responseData { response in
     
-    
-    // print(response.request)
-    // print(response.response)
-    // print(response.result.value)
-    
     let result = response.result.value
     
     if let responseData = result {
@@ -87,7 +83,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     self.humidLbl.text = "\(humid)%"
         
     self.descLbl.text = weather.summaryOfWeather
-    
+        
+        
+        print("We Got To Forecasted Weather\(weather.forecastedWeather?.count)")
+        
+        
+        //add error handling
+        for var x = 0; x < weather.forecastedWeather?.count; x++ {
+        print(weather.forecastedWeather![x].futureWeatherDescription)
+        print("we got to the second future loop")
+        }
+        
             } catch {
             print("Json Data Request Didn't Work")
             }

@@ -17,6 +17,8 @@
 		52403BF51C85DBEC003D7EE9 /* MaterialDesignUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52403BF41C85DBEC003D7EE9 /* MaterialDesignUIView.swift */; };
 		52403BF71C85DC7A003D7EE9 /* MaterialDesignTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52403BF61C85DC7A003D7EE9 /* MaterialDesignTextField.swift */; };
 		52403BFB1C85E791003D7EE9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52403BFA1C85E791003D7EE9 /* Extensions.swift */; };
+		52403BFD1C880414003D7EE9 /* FutureWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52403BFC1C880413003D7EE9 /* FutureWeather.swift */; };
+		52403BFF1C88C84C003D7EE9 /* AFDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52403BFE1C88C84C003D7EE9 /* AFDateExtension.swift */; };
 		5A477436CB466D042AAC2B95 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 129FADCF2A1EE5DAEEB3793C /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		52403BF41C85DBEC003D7EE9 /* MaterialDesignUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialDesignUIView.swift; sourceTree = "<group>"; };
 		52403BF61C85DC7A003D7EE9 /* MaterialDesignTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialDesignTextField.swift; sourceTree = "<group>"; };
 		52403BFA1C85E791003D7EE9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		52403BFC1C880413003D7EE9 /* FutureWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FutureWeather.swift; sourceTree = "<group>"; };
+		52403BFE1C88C84C003D7EE9 /* AFDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFDateExtension.swift; sourceTree = "<group>"; };
 		D9362CBCF69A851E0DE3D3BD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +83,7 @@
 		52403BD61C840AF8003D7EE9 /* WeatherAppStormy */ = {
 			isa = PBXGroup;
 			children = (
+				52403C001C88C855003D7EE9 /* Extensions */,
 				52403BED1C852C78003D7EE9 /* Model */,
 				52403BEC1C852C74003D7EE9 /* View */,
 				52403BEB1C852C6D003D7EE9 /* Controller */,
@@ -88,7 +93,6 @@
 				52403BDE1C840AF8003D7EE9 /* Assets.xcassets */,
 				52403BE01C840AF8003D7EE9 /* LaunchScreen.storyboard */,
 				52403BE31C840AF8003D7EE9 /* Info.plist */,
-				52403BFA1C85E791003D7EE9 /* Extensions.swift */,
 			);
 			path = WeatherAppStormy;
 			sourceTree = "<group>";
@@ -114,8 +118,18 @@
 			isa = PBXGroup;
 			children = (
 				52403BEE1C852D90003D7EE9 /* CurrentWeather.swift */,
+				52403BFC1C880413003D7EE9 /* FutureWeather.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		52403C001C88C855003D7EE9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				52403BFA1C85E791003D7EE9 /* Extensions.swift */,
+				52403BFE1C88C84C003D7EE9 /* AFDateExtension.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		E728DD3BEB15B4E9B2F99FEC /* Pods */ = {
@@ -249,8 +263,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52403BFD1C880414003D7EE9 /* FutureWeather.swift in Sources */,
 				52403BF51C85DBEC003D7EE9 /* MaterialDesignUIView.swift in Sources */,
 				52403BEF1C852D90003D7EE9 /* CurrentWeather.swift in Sources */,
+				52403BFF1C88C84C003D7EE9 /* AFDateExtension.swift in Sources */,
 				52403BDA1C840AF8003D7EE9 /* ViewController.swift in Sources */,
 				52403BD81C840AF8003D7EE9 /* AppDelegate.swift in Sources */,
 				52403BF71C85DC7A003D7EE9 /* MaterialDesignTextField.swift in Sources */,
