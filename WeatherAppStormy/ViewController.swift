@@ -85,12 +85,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     self.descLbl.text = weather.summaryOfWeather
         
         
+        
         print("We Got To Forecasted Weather\(weather.forecastedWeather?.count)")
         
         
         //add error handling
         for var x = 0; x < weather.forecastedWeather?.count; x++ {
-        print(weather.forecastedWeather![x].futureWeatherDescription)
+        print(weather.forecastedWeather![x].futureSummary!)
+        print(weather.forecastedWeather![x].futureHumidityLevel!)
+        print(weather.forecastedWeather![x].futureTempMax!)
+
         print("we got to the second future loop")
         }
         

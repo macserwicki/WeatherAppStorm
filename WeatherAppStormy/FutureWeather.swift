@@ -10,70 +10,73 @@ import Foundation
 
 
 class FutureWeather {
-
     
-    //testing
-    private var _futureWeatherDescription: String?
+    private var _futureTime: Int?
+    private var _futureSummary: String?
+    private var _futureIcon: String?
+    private var _futurePrecipType: String?
+    private var _futurePrecipProb: Double?
+    private var _futureTempMin: Double?
+    private var _futureTempMax: Double?
+    private var _futureHumidityLevel: Double?
+    private var _futureWindSpeed: Double?
+    private var _futureSunriseTime: Int?
+    private var _futureSunsetTime: Int?
     
-    var futureWeatherDescription: String? {
-        return _futureWeatherDescription
+    var futureTime: Int? {
+        return _futureTime
+    }
+    var futureSummary: String? {
+        return _futureSummary
+    }
+    var futureIcon: String? {
+        return _futureIcon
+    }
+    var futurePrecipType: String? {
+        return _futurePrecipType
+    }
+    var futurePrecipProb: Double? {
+        return _futurePrecipProb
+    }
+    var futureTempMin: Double? {
+        return _futureTempMin
+    }
+    var futureTempMax: Double? {
+        return _futureTempMax
+    }
+    var futureHumidityLevel: Double? {
+        return _futureHumidityLevel
+    }
+    var futureWindSpeed: Double? {
+        return _futureWindSpeed
+    }
+    var futureSunriseTime: Int? {
+        return _futureSunriseTime
+    }
+    var futureSunsetTime: Int? {
+        return _futureSunsetTime
     }
     
-    init(descriptionString: String) {
-        _futureWeatherDescription = futureWeatherDescription
+    
+    init(futureTimeInit: Int?, futureSummaryInit: String?, futureIconInit: String?, futurePrecipTypeInit: String?, futurePrecipProbInit: Double?, futureTempMinInit: Double?, futureTempMaxInit: Double?, futureHumidityLevelInit: Double?, futureWindSpeedInit: Double?, futureSunriseTimeInit: Int?, futureSunsetTimeInit: Int? ) {
+        
+
+        _futureTime = futureTimeInit
+        _futureSummary = futureSummaryInit
+        _futureIcon = futureIconInit
+        _futurePrecipType = futurePrecipTypeInit
+        _futurePrecipProb = futurePrecipProbInit
+        _futureTempMin = futureTempMinInit
+        _futureTempMax = futureTempMaxInit
+        _futureHumidityLevel = futureHumidityLevelInit!
+        _futureWindSpeed = futureWindSpeedInit
+        _futureSunriseTime = futureSunriseTimeInit
+        _futureSunsetTime = futureSunsetTimeInit
     }
     
 }
 
 
-/*
-}
 
-
-if let futureTime = day["time"] as? Double {
-    print(futureTime)
-}
-
-if let futureSummary = day["summary"] as? String {
-    print(futureSummary)
-}
-
-if let futureIcon = day["icon"] as? String {
-    print(futureIcon)
-}
-
-if let futurePrecipType = day["precipType"] as? String {
-    print(futurePrecipType)
-}
-
-if let futurePrecipProb = day["precipProbability"] as? Double {
-    print(futurePrecipProb)
-}
-
-if let futureTempMin = day["temperatureMin"] as? Double {
-    print(futureTempMin)
-}
-
-if let futureTempMax = day["temperatureMax"] as? Double {
-    print(futureTempMax)
-}
-
-if let futureHumidityLevel = day["humidity"] as? Double {
-    print(futureHumidityLevel)
-}
-
-if let futureWindSpeed = day["windSpeed"] as? Double {
-    print(futureWindSpeed)
-}
-
-if let futureSunriseTime = day["sunriseTime"] as? Int {
-    print(futureSunriseTime)
-}
-
-if let futureSunsetTime = day["sunsetTime"] as? Int {
-    print(futureSunsetTime)
-}
-
-*/
 
 

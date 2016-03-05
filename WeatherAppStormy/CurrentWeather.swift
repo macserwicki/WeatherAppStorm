@@ -67,6 +67,8 @@ class CurrentWeather {
     
     init (dict: Dictionary<String, AnyObject>) {
         
+        _forecastedDays = []
+        
         if let currentWeatherData = dict["currently"] as? Dictionary<String, AnyObject> {
             
             if let summary = currentWeatherData["summary"] as? String {
@@ -107,6 +109,8 @@ class CurrentWeather {
             if let hourly = dict["hourly"] as? Dictionary<String, AnyObject>  {
                 
                 //hourly forecast data
+                //do this after tableview is complete
+                //tapping on "current weather" opens hourly
                 
             }
             
@@ -122,53 +126,98 @@ class CurrentWeather {
                 
                 if let dailyWeekData = daily["data"] as? [Dictionary<String, AnyObject>] {
                     
+
+                    
                     for day in dailyWeekData {
                         
-                        var summString = ""
+                        var _futureTime: Int!
+                        var _futureSummary: String!
+                        var _futureIcon: String!
+                        var _futurePrecipType: String!
+                        var _futurePrecipProb: Double!
+                        var _futureTempMin: Double!
+                        var _futureTempMax: Double!
+                        var _futureHumidityLevel: Double!
+                        var _futureWindSpeed: Double!
+                        var _futureSunriseTime: Int!
+                        var _futureSunsetTime: Int!
                         
-                        if let futureTime = day["time"] as? Double {
+                        if let futureTime = day["time"] as? Int {
+                            _futureTime = futureTime
                             print(futureTime)
+                        } else {
+                            _futureTime = 0
                         }
                         
                         if let futureSummary = day["summary"] as? String {
-                            summString = futureSummary
+                            _futureSummary = futureSummary
                             print(futureSummary)
+                        } else {
+                            _futureSummary = ""
                         }
                         
                         if let futureIcon = day["icon"] as? String {
+                            _futureIcon = futureIcon
                             print(futureIcon)
+                        } else {
+                            _futureIcon = ""
                         }
                         
                         if let futurePrecipType = day["precipType"] as? String {
+                            _futurePrecipType = futurePrecipType
                             print(futurePrecipType)
+                        } else {
+                            _futurePrecipType = ""
                         }
                         
                         if let futurePrecipProb = day["precipProbability"] as? Double {
+                            _futurePrecipProb = futurePrecipProb
                             print(futurePrecipProb)
+                        } else {
+                            _futurePrecipProb = 0
                         }
                         
                         if let futureTempMin = day["temperatureMin"] as? Double {
+                            _futureTempMin = futureTempMin
                             print(futureTempMin)
+                        } else {
+                            _futureTempMin = 0
                         }
                         
                         if let futureTempMax = day["temperatureMax"] as? Double {
+                            _futureTempMax = futureTempMax
                             print(futureTempMax)
+                        } else {
+                            _futureTempMax = 0
                         }
                         
+                        
                         if let futureHumidityLevel = day["humidity"] as? Double {
+                            _futureHumidityLevel = futureHumidityLevel
                             print(futureHumidityLevel)
+                        } else {
+                            _futureHumidityLevel = 0
                         }
                         
                         if let futureWindSpeed = day["windSpeed"] as? Double {
+                            _futureWindSpeed = futureWindSpeed
                             print(futureWindSpeed)
+                        } else {
+                            _futureWindSpeed = 0
                         }
                         
                         if let futureSunriseTime = day["sunriseTime"] as? Int {
+                            _futureSunriseTime = futureSunriseTime
                             print(futureSunriseTime)
+                        } else {
+                            _futureSunriseTime = 0
                         }
                         
                         if let futureSunsetTime = day["sunsetTime"] as? Int {
+                            _futureSunsetTime = futureSunsetTime
                             print(futureSunsetTime)
+                        } else {
+                            _futureSunsetTime = 0
                         }
                         
                         //init a new class
@@ -176,9 +225,12 @@ class CurrentWeather {
                         
                         print("We got to the future loop")
                         
-                        let newWeather = FutureWeather(descriptionString: summString)
+                        let newWeather = FutureWeather.init(futureTimeInit: _futureTime, futureSummaryInit: _futureSummary, futureIconInit: _futureIcon, futurePrecipTypeInit: _futurePrecipType, futurePrecipProbInit: _futurePrecipProb, futureTempMinInit: _futureTempMin, futureTempMaxInit: _futureTempMax, futureHumidityLevelInit: _futureHumidityLevel, futureWindSpeedInit: _futureWindSpeed, futureSunriseTimeInit: _futureSunriseTime, futureSunsetTimeInit: _futureSunsetTime)
                         
-                        _forecastedDays?.append(newWeather)
+                        print(_futureSummary)
+                        print("we got here 3 - \(_futureTempMax)")
+                        
+                        _forecastedDays!.append(newWeather)
                         
                         
                     }
