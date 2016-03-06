@@ -13,7 +13,7 @@ class MaterialDesignUIView: UIView {
     
     func materialDesign (viewToChange: UIView) {
         viewToChange.layer.cornerRadius = 2.0
-        viewToChange.layer.shadowColor = UIColor(red: COLOR_SHADOW_MEDIUM, green: COLOR_SHADOW_MEDIUM, blue: COLOR_SHADOW_MEDIUM, alpha: 0.25).CGColor
+        viewToChange.layer.shadowColor = UIColor.blackColor().CGColor
         viewToChange.layer.shadowOpacity = 0.4
         viewToChange.layer.shadowRadius = 5.0
         viewToChange.layer.shadowOffset = CGSizeMake(0.0, 0.0)

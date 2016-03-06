@@ -194,15 +194,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         print( cell.futureHumidityLbl.text)
         print(String(weatherForCell.futureTempMax!))
         
-        cell.futureHumidityLbl.text = String(weatherForCell.futureHumidityLevel)
             
-        cell.futureSummaryLbl.text = String(weatherForCell.futureSummary!)
+        cell.futureSummaryLbl.text = (weatherForCell.futureSummary!)
+            
+        cell.futureTempMaxLbl.text = "\(Int(weatherForCell.futureTempMax!).description)°"
         
-        cell.futureTempMaxLbl.text = String(weatherForCell.futureTempMax!)
+        cell.futureTempMinLbl.text = "\(Int(weatherForCell.futureTempMin!).description)°"
+            
+        cell.futureTimeLbl.text = weatherForCell.futureDate!
         
-         cell.futureTempMinLbl.text = weatherForCell.futureTempMin!.description
-        
-        cell.futureHumidityLbl.text = weatherForCell.futureHumidityLevel!.description
+        let humidityString = Int(100 * weatherForCell.futureHumidityLevel!)
+        cell.futureHumidityLbl.text = "Humidity: \(humidityString)%"
+            
+        cell.futurePrecipProbLbl.text = weatherForCell.futurePrecipDescription
         
         
             return cell

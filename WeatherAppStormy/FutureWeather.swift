@@ -12,6 +12,7 @@ import Foundation
 class FutureWeather {
     
     private var _futureTime: Int?
+    private var _futureDate: String?
     private var _futureSummary: String?
     private var _futureIcon: String?
     private var _futurePrecipType: String?
@@ -22,6 +23,31 @@ class FutureWeather {
     private var _futureWindSpeed: Double?
     private var _futureSunriseTime: Int?
     private var _futureSunsetTime: Int?
+    private var _futurePrecipDescription: String?
+    
+    var futureDate: String? {
+        if let timeInterval: NSTimeInterval = Double(_futureTime!) {
+        let dateFromInterval = NSDate(timeIntervalSince1970: timeInterval)
+        
+        let dayValue = dateFromInterval.weekdayToString()
+        let monthValue = dateFromInterval.monthToString()
+        let dayNumberValue = dateFromInterval.day()
+            
+        let dateString = "\(dayValue), \(monthValue) \(dayNumberValue)"
+            return dateString
+        }
+            return nil
+    }
+    
+    var futurePrecipDescription: String? {
+        let precipType = _futurePrecipType!
+        let precipProb = "\((Int(100 * futurePrecipProb!)))%"
+        if precipType != "" {
+        let precipFullString = ("\(precipProb) Chance of \(precipType.capitalizedString)")
+        return precipFullString
+        }
+        return ("\(precipProb) Chance of Rain")
+    }
     
     var futureTime: Int? {
         return _futureTime

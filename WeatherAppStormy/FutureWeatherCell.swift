@@ -31,6 +31,12 @@ class FutureWeatherCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
        
+        self.layer.cornerRadius = 2.0
+        self.layer.shadowColor = UIColor(red: COLOR_SHADOW_MEDIUM, green: COLOR_SHADOW_MEDIUM, blue: COLOR_SHADOW_MEDIUM, alpha: 0.25).CGColor
+        self.layer.shadowOpacity = 0.4
+        self.layer.shadowRadius = 5.0
+        self.layer.shadowOffset = CGSizeMake(0.0, 0.0)
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
