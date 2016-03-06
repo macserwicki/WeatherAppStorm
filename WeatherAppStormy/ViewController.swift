@@ -204,7 +204,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         cell.futureTimeLbl.text = weatherForCell.futureDate!
         
         let humidityString = Int(100 * weatherForCell.futureHumidityLevel!)
-        cell.futureHumidityLbl.text = "Humidity: \(humidityString)%"
+        cell.futureHumidityLbl.text = "\(humidityString)% Humidity"
             
         cell.futurePrecipProbLbl.text = weatherForCell.futurePrecipDescription
         
