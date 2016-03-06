@@ -19,6 +19,7 @@
 		52403BFB1C85E791003D7EE9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52403BFA1C85E791003D7EE9 /* Extensions.swift */; };
 		52403BFD1C880414003D7EE9 /* FutureWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52403BFC1C880413003D7EE9 /* FutureWeather.swift */; };
 		52403BFF1C88C84C003D7EE9 /* AFDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52403BFE1C88C84C003D7EE9 /* AFDateExtension.swift */; };
+		52F307A61C8BE2660097A7C7 /* FutureWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F307A51C8BE2660097A7C7 /* FutureWeatherCell.swift */; };
 		5A477436CB466D042AAC2B95 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 129FADCF2A1EE5DAEEB3793C /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		52403BFA1C85E791003D7EE9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		52403BFC1C880413003D7EE9 /* FutureWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FutureWeather.swift; sourceTree = "<group>"; };
 		52403BFE1C88C84C003D7EE9 /* AFDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFDateExtension.swift; sourceTree = "<group>"; };
+		52F307A51C8BE2660097A7C7 /* FutureWeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FutureWeatherCell.swift; sourceTree = "<group>"; };
 		D9362CBCF69A851E0DE3D3BD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +112,7 @@
 			children = (
 				52403BF41C85DBEC003D7EE9 /* MaterialDesignUIView.swift */,
 				52403BF61C85DC7A003D7EE9 /* MaterialDesignTextField.swift */,
+				52F307A51C8BE2660097A7C7 /* FutureWeatherCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52403BFD1C880414003D7EE9 /* FutureWeather.swift in Sources */,
+				52F307A61C8BE2660097A7C7 /* FutureWeatherCell.swift in Sources */,
 				52403BF51C85DBEC003D7EE9 /* MaterialDesignUIView.swift in Sources */,
 				52403BEF1C852D90003D7EE9 /* CurrentWeather.swift in Sources */,
 				52403BFF1C88C84C003D7EE9 /* AFDateExtension.swift in Sources */,

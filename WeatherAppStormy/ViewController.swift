@@ -11,11 +11,12 @@ import Foundation
 import Alamofire
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
 
     let coordinates = "37.8267,-122.423"
     var _latValue = "37.8267"
     var _longValue = "122.423"
+    var _weather: CurrentWeather?
     
     @IBOutlet weak var tempLbl: UILabel!
     
@@ -25,9 +26,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var descLbl: UILabel!
     
+    @IBOutlet weak var tableView: UITableView!
+
+    
     var locationManager: CLLocationManager!
     
-    var weatherData = [CurrentWeather]()
+    var futureWeather = [FutureWeather]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +46,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         
     }
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -68,7 +74,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     let jsonDict = json as! Dictionary<String, AnyObject>
     
     let weather = CurrentWeather.init(dict: jsonDict)
-    
+
     //Add error handling
         
     self.tempLbl.text = "\(weather.temperature!.description)°"
@@ -84,16 +90,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
     self.descLbl.text = weather.summaryOfWeather
         
-        
+    self.futureWeather = weather.forecastedWeather!
         
         print("We Got To Forecasted Weather\(weather.forecastedWeather?.count)")
-        
-        
+
+    self.tableView.reloadData()
+
         //add error handling
         for var x = 0; x < weather.forecastedWeather?.count; x++ {
+            
+        print("////////")
         print(weather.forecastedWeather![x].futureSummary!)
         print(weather.forecastedWeather![x].futureHumidityLevel!)
+        print(weather.forecastedWeather![x].futureIcon!)
+        print(weather.forecastedWeather![x].futurePrecipProb!)
+        print(weather.forecastedWeather![x].futurePrecipType!)
+        print(weather.forecastedWeather![x].futureSunriseTime!)
+        print(weather.forecastedWeather![x].futureSunsetTime!)
         print(weather.forecastedWeather![x].futureTempMax!)
+        print("////////")
 
         print("we got to the second future loop")
         }
@@ -145,12 +160,59 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         print(_latValue)
         print(_longValue)
         updateUserLocationWeather(_longValue, latitude: _latValue, time: "")
         locationManager.stopUpdatingLocation()
     }
+ 
+    
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        print("TableView Count - \(futureWeather.count)")
+        return futureWeather.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        if let cell = tableView.dequeueReusableCellWithIdentifier("FutureWeatherCell") as? FutureWeatherCell {
+        
+  
+        let weatherForCell = futureWeather[indexPath.row]
+        
+        print("future humid lbl")
+        print( cell.futureHumidityLbl.text)
+        print(String(weatherForCell.futureTempMax!))
+        
+        cell.futureHumidityLbl.text = String(weatherForCell.futureHumidityLevel)
+            
+        cell.futureSummaryLbl.text = String(weatherForCell.futureSummary!)
+        
+        cell.futureTempMaxLbl.text = String(weatherForCell.futureTempMax!)
+        
+         cell.futureTempMinLbl.text = weatherForCell.futureTempMin!.description
+        
+        cell.futureHumidityLbl.text = weatherForCell.futureHumidityLevel!.description
+        
+        
+            return cell
+        } else {
+            return UITableViewCell()
+        }
+    }
+    
+    
+    
     
 }
 
