@@ -20,13 +20,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
     @IBOutlet weak var tempLbl: UILabel!
     
+    @IBOutlet weak var highLbl: UILabel!
+    
+    @IBOutlet weak var lowLbl: UILabel!
+    
     @IBOutlet weak var precipLbl: UILabel!
     
     @IBOutlet weak var humidLbl: UILabel!
     
+    @IBOutlet weak var dayLbl: UILabel!
+    
     @IBOutlet weak var descLbl: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
+
 
     
     var locationManager: CLLocationManager!
@@ -77,41 +84,28 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 
     //Add error handling
         
-    self.tempLbl.text = "\(weather.temperature!.description)°"
-    // Unicode for degree ° - U+00B0
+    self.tempLbl.text = "\(Int(weather.temperature!))°"
         
-    let precip = (weather.precipitationProbability! * Double(100.00)).description
+    let humid = Int(100 * weather.humidityLevel!)
         
-    self.precipLbl.text = "\(precip)%"
-        
-    let humid = (weather.humidityLevel! * Double(100.00)).description
-        
-    self.humidLbl.text = "\(humid)%"
-        
-    self.descLbl.text = weather.summaryOfWeather
+    self.humidLbl.text = "\(humid)% Humidity"
         
     self.futureWeather = weather.forecastedWeather!
         
-        print("We Got To Forecasted Weather\(weather.forecastedWeather?.count)")
+        self.highLbl.text = "\(Int(self.futureWeather[0].futureTempMax!))°"
+        
+        self.lowLbl.text = "\(Int(self.futureWeather[0].futureTempMin!))°"
+        
+        self.dayLbl.text = self.futureWeather[0].futureDate
+        
+        self.descLbl.text = self.futureWeather[0].futureSummary
+        
+        self.precipLbl.text = self.futureWeather[0].futurePrecipDescription
 
-    self.tableView.reloadData()
+        self.futureWeather.removeFirst()
 
-        //add error handling
-        for var x = 0; x < weather.forecastedWeather?.count; x++ {
-            
-        print("////////")
-        print(weather.forecastedWeather![x].futureSummary!)
-        print(weather.forecastedWeather![x].futureHumidityLevel!)
-        print(weather.forecastedWeather![x].futureIcon!)
-        print(weather.forecastedWeather![x].futurePrecipProb!)
-        print(weather.forecastedWeather![x].futurePrecipType!)
-        print(weather.forecastedWeather![x].futureSunriseTime!)
-        print(weather.forecastedWeather![x].futureSunsetTime!)
-        print(weather.forecastedWeather![x].futureTempMax!)
-        print("////////")
+        self.tableView.reloadData()
 
-        print("we got to the second future loop")
-        }
         
             } catch {
             print("Json Data Request Didn't Work")
@@ -188,18 +182,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         if let cell = tableView.dequeueReusableCellWithIdentifier("FutureWeatherCell") as? FutureWeatherCell {
         
   
+
+            
+            //highLbl - from 0 index
+            //lowLbl - from 0 index
+            //dayLbl - from 0 index
+
         let weatherForCell = futureWeather[indexPath.row]
+             
         
         print("future humid lbl")
         print( cell.futureHumidityLbl.text)
         print(String(weatherForCell.futureTempMax!))
         
             
+            
         cell.futureSummaryLbl.text = (weatherForCell.futureSummary!)
             
         cell.futureTempMaxLbl.text = "\(Int(weatherForCell.futureTempMax!).description)°"
         
-        cell.futureTempMinLbl.text = "\(Int(weatherForCell.futureTempMin!).description)°"
+        cell.futureTempMinLbl.text = " \(Int(weatherForCell.futureTempMin!).description)°"
             
         cell.futureTimeLbl.text = weatherForCell.futureDate!
         
@@ -207,7 +209,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         cell.futureHumidityLbl.text = "\(humidityString)% Humidity"
             
         cell.futurePrecipProbLbl.text = weatherForCell.futurePrecipDescription
-        
+            
+            
         
             return cell
         } else {
@@ -215,7 +218,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         }
     }
     
-    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        return 165
+        
+    }
     
     
 }
